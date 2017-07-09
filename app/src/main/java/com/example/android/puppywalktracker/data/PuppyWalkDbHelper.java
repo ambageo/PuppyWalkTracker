@@ -21,14 +21,7 @@ public class PuppyWalkDbHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_ENTRIES =
-                "CREATE TABLE " + PuppyWalkEntry.TABLE_NAME + "(" +
-                        PuppyWalkEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        PuppyWalkEntry.COLUMN_PET_NAME + " TEXT," +
-                        PuppyWalkEntry.COLUMN_PET_DATE + " DATE," +
-                        PuppyWalkEntry.COLUMN_PET_DURATION + " INTEGER NOT NULL," +
-                        PuppyWalkEntry.COLUMN_PET_TRAINING + " INTEGER NOT NULL)";
-        db.execSQL(SQL_CREATE_ENTRIES);
+        createTable(db);
     }
 
     public void onUpgrade(SQLiteDatabase db, int OldVersion, int NewVersion) {
@@ -37,6 +30,17 @@ public class PuppyWalkDbHelper extends SQLiteOpenHelper {
         String SQL_DROP_ENTRIES =
                 "DROP TABLE IF EXISTS " + PuppyWalkEntry.TABLE_NAME;
         db.execSQL(SQL_DROP_ENTRIES);
-        onCreate(db);
+        createTable(db);
+    }
+
+    private void createTable(SQLiteDatabase db) {
+        String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + PuppyWalkEntry.TABLE_NAME + "(" +
+                        PuppyWalkEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        PuppyWalkEntry.COLUMN_PET_NAME + " TEXT," +
+                        PuppyWalkEntry.COLUMN_PET_DATE + " DATE," +
+                        PuppyWalkEntry.COLUMN_PET_DURATION + " INTEGER NOT NULL," +
+                        PuppyWalkEntry.COLUMN_PET_TRAINING + " INTEGER NOT NULL)";
+        db.execSQL(SQL_CREATE_ENTRIES);
     }
 }
