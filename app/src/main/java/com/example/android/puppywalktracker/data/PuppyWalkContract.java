@@ -9,6 +9,11 @@ import android.provider.BaseColumns;
  */
 
 public final class PuppyWalkContract {
+
+    private PuppyWalkContract() {
+        //Intentionally left empty to prevent this class from being instantiated
+    }
+
     public static abstract class PuppyWalkEntry implements BaseColumns {
         //Names of the table and columns
         public static final String TABLE_NAME = "puppywalk";
